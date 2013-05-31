@@ -1,0 +1,8 @@
+<http:conduit name="*.http-conduit"> 
+    <http:tlsClientParameters> 
+      <sec:trustManagers> 
+        <sec:keyStore type="JKS" password="password" 
+           resource="trusted-certs.keystore" /> 
+      </sec:trustManagers> 
+    </http:tlsClientParameters> 
+</http:conduit> 
