@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+ <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+ <properties>
+   <comment>Description of the property list</comment>
+   <!-- 
+   <entry key="nameOfTheFidld">fieldStartPosition,fieldLength,shouldIncludeTheField</entry> 
+   -->
+   <entry key="id">0,10,Y</entry>
+   <entry key="name">10,25,Y</entry>
+   <entry key="address">35,100,Y</entry>
+   <entry key="city">135,100,N</entry>
+   <entry key="state">235,2,N</entry>
+   <entry key="zip">237,10,N</entry>
+ </properties>
