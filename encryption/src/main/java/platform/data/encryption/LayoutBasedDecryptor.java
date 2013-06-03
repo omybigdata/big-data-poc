@@ -40,7 +40,9 @@ public class LayoutBasedDecryptor {
 	private String unParse(String[] values) {
 		if(this.layout instanceof CsvFileLayout){
 			return ((CsvFileLayout) layout).unParse(values);
-		}else{
+		}else if(this.layout instanceof FixedFileLayout){
+			return ((FixedFileLayout) layout).unParse(values);
+		} else {
 			throw new RuntimeException("Layout Not Supported yet.");
 		}
 	}		
@@ -48,6 +50,8 @@ public class LayoutBasedDecryptor {
 	private String[] parse(String record){
 		if(this.layout instanceof CsvFileLayout){
 			return ((CsvFileLayout) layout).parse(record);
+		}else if(this.layout instanceof FixedFileLayout){
+			return ((FixedFileLayout) layout).parse(record);
 		}else{
 			throw new RuntimeException("Layout Not Supported yet.");
 		}

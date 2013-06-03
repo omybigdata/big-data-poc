@@ -8,6 +8,7 @@ import java.util.List;
 import platform.data.file.layout.CsvFileLayout;
 import platform.data.file.layout.Field;
 import platform.data.file.layout.FileLayout;
+import platform.data.file.layout.FixedFileLayout;
 
 public class LayoutBasedEncryptor {
 	
@@ -41,7 +42,9 @@ public class LayoutBasedEncryptor {
 	private String unParse(String[] values) {
 		if(this.layout instanceof CsvFileLayout){
 			return ((CsvFileLayout) layout).unParse(values);
-		}else{
+		}else if(this.layout instanceof FixedFileLayout){
+			return ((FixedFileLayout) layout).unParse(values);
+		}{
 			throw new RuntimeException("Layout Not Supported yet.");
 		}
 	}
@@ -49,6 +52,8 @@ public class LayoutBasedEncryptor {
 	private String[] parse(String record){
 		if(this.layout instanceof CsvFileLayout){
 			return ((CsvFileLayout) layout).parse(record);
+		}else if(this.layout instanceof FixedFileLayout){
+			return ((FixedFileLayout) layout).parse(record);
 		}else{
 			throw new RuntimeException("Layout Not Supported yet.");
 		}
