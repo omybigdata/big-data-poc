@@ -9,20 +9,13 @@ class SimpleRESTClientTest {
 	@Test
 	public void testGetData() {
 		SimpleRESTClient restClient = new SimpleRESTClient("http://localhost:8080", false)
-		restClient.authenticate("admin", "admin")
-		def data = restClient.getData("/KeyManager/RKey/list", null)
+		//restClient.authenticate("admin", "admin")
+		def resourceKey = restClient.getData("/KeyManager/rest/resource/ar", "text/xml")
 		
-		println(data.toString())
+		println(resourceKey.toString())
 		
-		data.each(){ it ->
-				println "resourceName = ${it.name}"
-				String name = it.name
-				assertTrue name != null && !name.trim().equals("")
-				
-				println "Description = ${it.description}"
-				String description = it.description
-				assertTrue description != null && !description.trim().equals("")
-		}
+		println "Resource Name: ${resourceKey.resourceName}"
+		println "Encryption Key: ${resourceKey.encryptionKey}"
 	}
 
 }

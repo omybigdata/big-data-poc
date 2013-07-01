@@ -82,11 +82,7 @@ class SimpleRESTClient {
 	 * @return Parsed data Object 
 	 */
 	Object getData(String rPath, String rContentType){		
-		def resp = restClient.get(path: rPath, 
-			contentType: rContentType, 
-			Authorization: "Basic YWRtaW46YWRtaW4=", 
-			Connection: "keep-alive", 
-			Accept: "text/xml")
+		def resp = restClient.get(path: rPath, contentType: rContentType)
 		assert resp.status == 200 
 		def parsedDataObject = resp.getData()
 		assert parsedDataObject.size() > 0

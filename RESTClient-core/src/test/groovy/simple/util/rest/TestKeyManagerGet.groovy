@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 class TestKeyManagerGet {
 	
-	@Test
 	public void testGetData() {
 		
 		def authSite = new HTTPBuilder( 'http://localhost:8080' )

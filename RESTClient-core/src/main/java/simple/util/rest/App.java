@@ -13,12 +13,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        
-        SimpleRESTClient restClient = new SimpleRESTClient("http://localhost:8080", false);
-		@SuppressWarnings("rawtypes")
-		HashMap service = (HashMap) restClient.getData("/rest/resource/ar", "text/xml");
-		
-		System.out.println(service);
+    	KeyServiceClient c = new KeyServiceClient("http://ushoflt319544:8080");
+    	if(args!=null && args.length > 0){
+    		ResourceKey rkey = c.getKey(args[0]);
+    		System.out.println("Encryption Key: " + rkey.getEncryptionKey() + "\nEncryption Scheme: " + rkey.getEncryptionScheme());
+    	}else{
+    		System.out.println("pass resource name");
+    	}
     }
 }
