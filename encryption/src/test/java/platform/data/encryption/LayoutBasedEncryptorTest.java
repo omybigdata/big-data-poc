@@ -50,7 +50,7 @@ public class LayoutBasedEncryptorTest {
 		System.out.println("Testing FixedFileLayout based encryption/decryption");
 		System.out.println("=================================================");
 		init();
-		String record = "1000000001DEBA SAHA                2519 Honeysuckle ln                                                                                 Rolling Meadows                                                                                     IL60008      " ;
+		String record = "1000000001DEBA SAHA                2519 Honeysuckle ln                                                                                 Rolling Meadows                                                                                     IL60008     " ;
 		LayoutBasedEncryptor e = new LayoutBasedEncryptor(this.ffl, this.encryptionScheme, this.encryptionKey);
 		LayoutBasedDecryptor d = new LayoutBasedDecryptor(this.ffl, this.encryptionScheme, this.encryptionKey);
 		String cryptRecord = e.encryptValue(record);
@@ -80,16 +80,35 @@ public class LayoutBasedEncryptorTest {
 		System.out.println("=================================================");
 		init();
 		String record = "100000001,DEBA SAHA,2519 Honeysuckle ln,Rolling Meadows,IL,60008" ;
-		LayoutBasedEncryptor e = new LayoutBasedEncryptor(this.cfl, this.encryptionScheme, this.encryptionKey);
-		LayoutBasedDecryptor d = new LayoutBasedDecryptor(this.cfl, this.encryptionScheme, this.encryptionKey);
-		String cryptRecord = e.encryptValue(record);
+		LayoutBasedEncryptor encryptor = new LayoutBasedEncryptor(this.cfl, this.encryptionScheme, this.encryptionKey);
+		LayoutBasedDecryptor decryptor = new LayoutBasedDecryptor(this.cfl, this.encryptionScheme, this.encryptionKey);
+		String cryptRecord = encryptor.encryptValue(record);
 		System.out.println("Raw Record:\n " + record);
 		System.out.println("Encrypted Record:\n "+cryptRecord);
 		
-		String recoverdRecord = d.decryptValue(cryptRecord);
+		String recoverdRecord = decryptor.decryptValue(cryptRecord);
 		System.out.println("Recovered record:\n "+recoverdRecord);
 		
 		assertEquals(record, recoverdRecord);
+		
+		record = "Bell|Franks|Ap #339-4744 Et Rd.|Kapiti|NI||10001|Proin.velit@maurisrhoncusid.ca|149752|0|1|4";
+		cfl = new CsvFileLayout("src/test/resources/poc_data_layout.xml", "|");
+		
+		encryptor = new LayoutBasedEncryptor(this.cfl, this.encryptionScheme, this.encryptionKey);
+		
+		decryptor = new LayoutBasedDecryptor(this.cfl, this.encryptionScheme, this.encryptionKey);
+		
+		cryptRecord = encryptor.encryptValue(record);
+		
+		System.out.println("Raw Record:\n " + record);
+		System.out.println("Encrypted Record:\n "+cryptRecord);
+		
+		recoverdRecord = decryptor.decryptValue(cryptRecord);
+		System.out.println("Recovered record:\n "+recoverdRecord);
+		
+				
 	}
+	
+	
 
 }

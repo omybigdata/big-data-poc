@@ -3,7 +3,10 @@ package platform.data.encryption;
 import java.security.InvalidKeyException;
 import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 import platform.data.file.layout.CsvFileLayout;
 import platform.data.file.layout.Field;
@@ -14,11 +17,13 @@ public class LayoutBasedEncryptor {
 	
 	private FileLayout layout;
 	private StringEncryptor encrypter;
+	
+	private static final Log LOG = LogFactory.getLog(LayoutBasedEncryptor.class);
 
 	public  LayoutBasedEncryptor(FileLayout layout, String encryptionScheme, String encryptionKey) 
 			throws NoSuchProviderException, EncryptionException, InvalidKeyException, InvalidKeySpecException{
 		this.layout = layout;
-		this.encrypter = new StringEncryptor( encryptionScheme,	encryptionKey );		
+		this.encrypter = new StringEncryptor(encryptionScheme,	encryptionKey);		
 		this.encrypter.initEncryptMode();
 	}
 	
@@ -30,8 +35,10 @@ public class LayoutBasedEncryptor {
 		int pos=0;		
 		for(Field f:fields){
 			if (f.isUseField()){
-				String encryptedValue = values[pos];
-				values[pos] = this.encrypter.encrypt(encryptedValue);
+				String rawValue = values[pos];
+				if(rawValue!=null && !rawValue.trim().equals("")){
+					values[pos] = this.encrypter.encrypt(rawValue);
+				}
 			}
 			pos++;
 		}

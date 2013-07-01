@@ -150,8 +150,7 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.6</version>
-			<scope>compile</scope>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -162,6 +161,11 @@
 			<groupId>platform.data</groupId>
   			<artifactId>data-file-layout</artifactId>
   			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 	</dependencies>
 </project>

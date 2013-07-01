@@ -17,6 +17,8 @@ import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Common library API for String Encryption. This library can be used
@@ -30,8 +32,9 @@ public class StringEncryptor implements Crypto {
 	private SecretKeyFactory keyFactory;
 	private Cipher cipher;
 
-	private static final String UNICODE_FORMAT = "UTF8";
-
+	private static final String UNICODE_FORMAT = "UTF8";	
+	private static final Log LOG = LogFactory.getLog(StringEncryptor.class);
+	
 	/**
 	 * @param encryptionScheme
 	 * @throws EncryptionException
@@ -123,11 +126,10 @@ public class StringEncryptor implements Crypto {
 			throw new IllegalArgumentException(
 					"unencrypted string was null or empty");
 		}
-
 		try {
 			byte[] cleartext = unencryptedString.getBytes(UNICODE_FORMAT);
 			byte[] ciphertext = cipher.doFinal(cleartext);
-			return Base64.encodeBase64String(ciphertext);
+			return new String(Base64.encodeBase64(ciphertext), UNICODE_FORMAT);
 		} catch (Exception e) {
 			throw new EncryptionException(e);
 		}
@@ -217,7 +219,7 @@ public class StringEncryptor implements Crypto {
 			throw new IllegalArgumentException(
 					"encrypted string was null or empty");
 		}
-
+		
 		try {
 			byte[] cleartext = Base64.decodeBase64(encryptedString);
 			byte[] ciphertext = cipher.doFinal(cleartext);

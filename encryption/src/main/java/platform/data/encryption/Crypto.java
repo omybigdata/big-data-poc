@@ -4,7 +4,7 @@ import java.security.InvalidKeyException;
 import java.security.spec.InvalidKeySpecException;
 
 /**
- * Common library API for String Encryption. 
+ * Common library API for Text Encryption. 
  * This library can be used with in any wrapper to execute 
  * encryption logic in different environment.   
  * @author Deba Saha
