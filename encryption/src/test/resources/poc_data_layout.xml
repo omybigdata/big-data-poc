@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+ <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+ <properties>
+   <comment>Description of the property list</comment>
+   <!-- 
+	<entry key="nameOfTheFidld">fieldSequence,fieldLength,shouldIncludeTheField</entry> 
+   -->
+	<entry key="FIRST_NAME">0,25,Y</entry>
+	<entry key="LAST_NAME">1,25,Y</entry>
+	<entry key="ADDR_LINE1">2,50,N</entry>
+	<entry key="CITY">3,50,N</entry>
+	<entry key="STATE">4,2,N</entry>
+	<entry key="ZIP">5,10,N</entry>
+	<entry key="ACCT_NO">6,10,Y</entry>
+	<entry key="EMAIL">7,50,Y</entry>
+	<entry key="INCOME">8,10,N</entry>
+	<entry key="NUM_CHILDREN">9,2,N</entry>
+	<entry key="NUM_CAR">10,2,N</entry>
+	<entry key="NUM_BED_ROOM">11,1,N</entry>
+ </properties>	
+ 
