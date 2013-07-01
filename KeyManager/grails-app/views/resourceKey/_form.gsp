@@ -10,6 +10,14 @@
 	<g:textField name="encryptionKey" required="" value="${resourceKeyInstance?.encryptionKey}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: resourceKeyInstance, field: 'encryptionScheme', 'error')} required">
+	<label for="encryptionScheme">
+		<g:message code="resourceKey.encryptionScheme.label" default="Encryption Scheme" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="encryptionScheme" required="" value="${resourceKeyInstance?.encryptionScheme}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: resourceKeyInstance, field: 'resource', 'error')} ">
 	<label for="resource">
 		<g:message code="resourceKey.resource.label" default="Resource" />

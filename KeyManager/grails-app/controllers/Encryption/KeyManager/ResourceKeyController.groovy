@@ -1,7 +1,6 @@
 package Encryption.KeyManager
 
 import org.springframework.dao.DataIntegrityViolationException
-import grails.converters.*
 
 class ResourceKeyController {
 
@@ -41,17 +40,6 @@ class ResourceKeyController {
 
         [resourceKeyInstance: resourceKeyInstance]
     }
-	
-	def showREST(Long id) {
-		def resourceKeyInstance = ResourceKey.get(id)
-		if (!resourceKeyInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'resourceKey.label', default: 'ResourceKey'), id])
-			redirect(action: "list")
-			return
-		}
-
-		render resourceKeyInstance as  XML
-	}
 
     def edit(Long id) {
         def resourceKeyInstance = ResourceKey.get(id)

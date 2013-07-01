@@ -91,8 +91,8 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'Encryption.KeyManager.User'
+grails.plugins.springsecurity.userLookup.userDomainClassName 	= 'Encryption.KeyManager.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'Encryption.KeyManager.UserRole'
-grails.plugins.springsecurity.authority.className = 'Encryption.KeyManager.Role'
+grails.plugins.springsecurity.authority.className 				= 'Encryption.KeyManager.Role'
 
-grails.plugins.springsecurity.providerNames = ['platformAuthenticationProvider','anonymousAuthenticationProvider','rememberMeAuthenticationProvider']
+//grails.plugins.springsecurity.providerNames = ['platformAuthenticationProvider','anonymousAuthenticationProvider','rememberMeAuthenticationProvider']

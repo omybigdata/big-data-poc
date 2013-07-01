@@ -26,6 +26,8 @@
 					
 						<g:sortableColumn property="encryptionKey" title="${message(code: 'resourceKey.encryptionKey.label', default: 'Encryption Key')}" />
 					
+						<g:sortableColumn property="encryptionScheme" title="${message(code: 'resourceKey.encryptionScheme.label', default: 'Encryption Scheme')}" />
+					
 					</tr>
 				</thead>
 				<tbody>
@@ -33,6 +35,8 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${resourceKeyInstance.id}">${fieldValue(bean: resourceKeyInstance, field: "encryptionKey")}</g:link></td>
+					
+						<td>${fieldValue(bean: resourceKeyInstance, field: "encryptionScheme")}</td>
 					
 					</tr>
 				</g:each>

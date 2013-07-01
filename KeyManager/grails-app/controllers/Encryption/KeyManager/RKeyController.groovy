@@ -5,11 +5,12 @@ import grails.converters.XML
 import grails.plugins.springsecurity.Secured
 import groovy.xml.MarkupBuilder
 
-@Secured(['ROLE_ADMIN'])
+
 class RKeyController {
 
     static allowedMethods = [save:  ["POST", "PUT"], delete: "DELETE"]
-
+    
+	@Secured(['ROLE_ADMIN'])
     def index = {		
 		switch(request.method){
 			case "GET":
@@ -62,10 +63,11 @@ class RKeyController {
 		
 		//if encryption key exist, it will assign the key to the 
 		//resource otherwise create the key in the key table
-        def rk = ResourceKey.findByEncryptionKey(xml.encryptionKey.text())
+        def rk = ResourceKey.findByEncryptionKeyAndEncryptionScheme(xml.encryptionKey.text(),xml.encryptionScheme.text())
 		if(!rk) {
 			rk = new ResourceKey()
-			rk.encryptionKey = xml.encryptionKey.text()
+			rk.encryptionKey    = xml.encryptionKey.text()
+			rk.encryptionScheme = xml.encryptionScheme.text()
 			
 			if(!rk.save()){
 				render rk.errors
@@ -100,6 +102,7 @@ class RKeyController {
 				//generate a key for the resouce
 				def rk = new ResourceKey()
 				rk.encryptionKey = Encryption.KeyGenerator.generateKey()
+				rk.encryptionScheme = "DESede"
 				//assign the key to the resource
 				r.rKey = rk
 				//save the key
@@ -118,7 +121,8 @@ class RKeyController {
 				resourceKey{
 					resourceName(r.name)
 					resourceDescription(r.description)
-					encryptionKey(rk.encryptionKey)
+					encryptionKey(r.rKey.encryptionKey)
+					encryptionScheme(r.rKey.encryptionScheme)
 				}
 			}
 		}else{

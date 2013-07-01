@@ -32,6 +32,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${resourceKeyInstance?.encryptionScheme}">
+				<li class="fieldcontain">
+					<span id="encryptionScheme-label" class="property-label"><g:message code="resourceKey.encryptionScheme.label" default="Encryption Scheme" /></span>
+					
+						<span class="property-value" aria-labelledby="encryptionScheme-label"><g:fieldValue bean="${resourceKeyInstance}" field="encryptionScheme"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${resourceKeyInstance?.resource}">
 				<li class="fieldcontain">
 					<span id="resource-label" class="property-label"><g:message code="resourceKey.resource.label" default="Resource" /></span>
