@@ -4,9 +4,11 @@ package platform.data.encryption;
 import java.security.InvalidKeyException;
 import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.List;
 
-import platform.data.file.layout.*;
+import platform.data.file.layout.CsvFileLayout;
+import platform.data.file.layout.Field;
+import platform.data.file.layout.FileLayout;
+import platform.data.file.layout.FixedFileLayout;
 
 public class LayoutBasedDecryptor {
 	
