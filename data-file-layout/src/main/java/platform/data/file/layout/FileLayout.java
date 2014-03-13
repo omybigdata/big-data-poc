@@ -2,7 +2,9 @@ package platform.data.file.layout;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
+import java.util.Map;
 import java.util.Properties;
 
 public abstract class FileLayout {
@@ -66,5 +68,18 @@ public abstract class FileLayout {
 	abstract public String[] parse(String record);
 	
 	abstract public String unParse(String [] recordValues);
+	
+	public Map<String,String> parsedMap(String record){
+					
+		Map<String, String> hm = new HashMap<String, String>();
+		
+		String [] fieldValues = parse(record);
+		Field [] fieldNames = getFields();
+		
+		for(int i=0; i<fieldNames.length; i++){			
+				hm.put(fieldNames[i].getFieldName(), fieldValues[i]);	
+		}		
+		return hm;
+	}
 
 }

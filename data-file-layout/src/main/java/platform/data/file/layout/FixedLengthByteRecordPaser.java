@@ -51,11 +51,13 @@ public class FixedLengthByteRecordPaser {
 			if(field instanceof FixedLengthField) {
 				f = (FixedLengthField) field;			
 				if(!f.isUseField()) continue;			
+				
 				String value = (
 					charEncoding != null ? 	
 							new String(buf, f.getStartBytePos(), f.getByteLength(), charEncoding) 
 							: new String(buf, f.getStartBytePos(), f.getByteLength()) 
-					);			
+					);	
+				
 				hm.put(field.getFieldName(), value);
 			}else{
 				throw new RuntimeException("field must be of type: FixedLengthField");
