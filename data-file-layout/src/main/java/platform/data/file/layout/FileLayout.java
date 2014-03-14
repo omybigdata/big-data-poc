@@ -27,28 +27,28 @@ public abstract class FileLayout {
 	 * @throws InvalidFieldLayoutException
 	 */
 	public FileLayout(String layoutFile) 
-			throws InvalidPropertiesFormatException, NumberFormatException, IOException, InvalidFieldLayoutException {			
-			property = getProperty(layoutFile);
-			fields = new Field[property.size()];
-			int fieldWidth=0;
-			boolean useField = true;				
+		throws InvalidPropertiesFormatException, NumberFormatException, IOException, InvalidFieldLayoutException {			
+		property = getPropertyFromFile(layoutFile);
+		fields = new Field[property.size()];
+		int fieldWidth=0;
+		boolean useField = true;				
+		
+		for(Object o: property.keySet()){
+			String fieldName = (String)o;
+			String posValueStr = property.getProperty(fieldName);
+			String[] posValues = posValueStr.split(",");
+			int index;
 			
-			for(Object o: property.keySet()){
-				String fieldName = (String)o;
-				String posValueStr = property.getProperty(fieldName);
-				String[] posValues = posValueStr.split(",");
-				int index;
-				
-				if(posValues != null && posValues.length==3){
-					index = Integer.parseInt(posValues[0]);
-					fieldWidth=Integer.parseInt(posValues[1]);
-					useField = "Y".equalsIgnoreCase(posValues[2]);
-					fields[index] = new Field( fieldName, fieldWidth, useField);
-				}else{
-					throw new InvalidFieldLayoutException("Fields layout is not defined properly");
-				}
+			if(posValues != null && posValues.length==3){
+				index = Integer.parseInt(posValues[0]);
+				fieldWidth=Integer.parseInt(posValues[1]);
+				useField = "Y".equalsIgnoreCase(posValues[2]);
+				fields[index] = new Field( fieldName, fieldWidth, useField);
+			}else{
+				throw new InvalidFieldLayoutException("Fields layout is not defined properly");
 			}
 		}
+	}
 
 	/**
 	 * @return list of Fixed Length Fields defined by the layout
@@ -57,7 +57,7 @@ public abstract class FileLayout {
 		return fields;
 	}
 
-	protected Properties getProperty(String fileName)
+	protected Properties getPropertyFromFile(String fileName)
 			throws InvalidPropertiesFormatException, IOException {   
 			    Properties prop = new Properties();  
 			    FileInputStream fis = new FileInputStream(fileName);  

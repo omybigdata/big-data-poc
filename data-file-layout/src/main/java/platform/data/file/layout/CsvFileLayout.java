@@ -15,10 +15,16 @@ public class CsvFileLayout extends FileLayout {
 		this.patern = Pattern.quote(delimiter);
 	}
 	
+	/* (non-Javadoc)
+	 * @see platform.data.file.layout.FileLayout#parse(java.lang.String)
+	 */
 	public String[] parse(String record){
 		return record.split(this.patern);
 	}
 	
+	/* (non-Javadoc)
+	 * @see platform.data.file.layout.FileLayout#unParse(java.lang.String[])
+	 */
 	public String unParse(String [] recordValues){
 		if(recordValues == null || recordValues.length < 1) return null;
 		

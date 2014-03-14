@@ -16,7 +16,7 @@ public class FixedFileLayout extends FileLayout {
 	
 	public FixedFileLayout(String layoutFile) 
 		throws InvalidPropertiesFormatException, NumberFormatException, IOException, InvalidFieldLayoutException {		
-		property = getProperty(layoutFile);		
+		property = getPropertyFromFile(layoutFile);		
 		fields = new Field[property.size()];		
 		List<FixedLengthField> sortedList = new ArrayList<FixedLengthField>(property.size());
 		recordByteLength=0;
