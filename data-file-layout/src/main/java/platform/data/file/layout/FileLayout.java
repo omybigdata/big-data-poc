@@ -2,6 +2,7 @@ package platform.data.file.layout;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
@@ -54,7 +55,9 @@ public abstract class FileLayout {
 	 * @return list of Fixed Length Fields defined by the layout
 	 */
 	public Field[] getFields() {
-		return fields;
+		Field[] resultFields = new Field[fields.length];
+		System.arraycopy(fields, 0, resultFields, 0, fields.length);
+		return resultFields;
 	}
 
 	protected Properties getPropertyFromFile(String fileName)
